@@ -75,8 +75,14 @@ class CustomMethods(private val reactContext: ReactApplicationContext) :
 
         override fun onCreate(savedInstanceState: Bundle?) {
             super.onCreate(savedInstanceState)
+            
+            val integrator = IntentIntegrator(this@ScanQRActivity)
+            integrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+            integrator.setPrompt("Scan QR Code")
+            integrator.setBeepEnabled(false)
+
             // Initialize the QR code scanning process
-            IntentIntegrator(this@ScanQRActivity).initiateScan()
+            integrator.initiateScan()
         }
 
         override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
